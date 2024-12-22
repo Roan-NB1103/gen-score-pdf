@@ -27,3 +27,9 @@ fonts-kacst
 fonts-freefont-ttf
 libxss1
 libxtst6
+fonts-ipafont
+fonts-ipafont-gothic
+fonts-ipafont-mincho
+fonts-ipaexfont
+fonts-ipaexfont-gothic
+fonts-ipaexfont-mincho

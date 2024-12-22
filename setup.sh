@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# システム更新とPythonのセットアップ
-apt-get update
-apt-get install -y python3-pip
+# Ensure scripts fail on error
+set -e
 
-# Playwrightのインストール
-pip install playwright
+# Install Playwright browsers
+echo "Installing Playwright browsers..."
+playwright install --with-deps chromium
 
-# Playwrightブラウザのインストール
-playwright install chromium
-playwright install-deps chromium
+# Set permissions
+echo "Setting permissions..."
+mkdir -p /home/appuser/.cache
+chmod -R 777 /home/appuser/.cache
 
-# 権限の設定
-chmod -R 777 /home/appuser/.cache/ms-playwright
+# Additional setup for Playwright
+echo "Configuring Playwright..."
+PLAYWRIGHT_BROWSERS_PATH=/home/appuser/.cache/ms-playwright
+export PLAYWRIGHT_BROWSERS_PATH
+
+echo "Setup completed successfully"

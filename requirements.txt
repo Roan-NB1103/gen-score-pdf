@@ -1,24 +1,13 @@
-# Web Application Framework
 streamlit==1.31.0
-
-# PDF Generation
 playwright==1.41.1
 pyee==11.0.1
-
-# Data Processing
 pandas==2.2.0
-openpyxl==3.1.2  # Excel file support
-chardet==5.2.0   # Character encoding detection
-numpy==1.26.3    # Required by pandas
-
-# Type Hints
+openpyxl==3.1.2
+chardet==5.2.0
+numpy==1.26.3
 typing-extensions==4.9.0
-
-# Development Tools
-black==24.1.1     # Code formatting
-flake8==7.0.0     # Code linting
-pytest==8.0.0     # Testing
-pytest-asyncio==0.23.5  # Async testing support
-
-# Cloud Run Dependencies
-gunicorn==21.2.0  # WSGI HTTP Server
+black==24.1.1
+flake8==7.0.0
+pytest==8.0.0
+pytest-asyncio==0.23.5
+gunicorn==21.2.0

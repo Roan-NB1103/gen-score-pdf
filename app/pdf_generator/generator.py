@@ -42,6 +42,31 @@ def encode_image_to_base64(image_path: str) -> str:
         return ""
 
 
+async def generate_pdf_async(html_with_css):
+    """PDFを非同期で生成"""
+    try:
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(
+                headless=True,
+                args=['--no-sandbox', '--disable-setuid-sandbox']
+            )
+            page = await browser.new_page()
+            await page.set_viewport_size({"width": 842, "height": 595})
+            await page.set_content(html_with_css, wait_until="networkidle")
+            await page.wait_for_timeout(1000)
+            pdf_data = await page.pdf(
+                width="842px",
+                height="595px",
+                print_background=True,
+                margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
+            )
+            await browser.close()
+            return pdf_data
+    except Exception as e:
+        print(f"PDF generation error: {str(e)}")
+        raise
+
+
 def generate_pdf(data: Dict[str, Any]) -> bytes:
     """
     PDFを生成する
@@ -73,38 +98,37 @@ def generate_pdf(data: Dict[str, Any]) -> bytes:
 
     # テンプレートタイプに応じた修正
     if data.get("template_type") == "点数アップ掲示":
-
         additional_css = """
         /* スコア全体のレイアウト調整 */
-    .score-container {
-        position: relative;
-        width: 600px;  /* スコア表示エリアの幅を確保 */
-    }
+        .score-container {
+            position: relative;
+            width: 600px;  /* スコア表示エリアの幅を確保 */
+        }
         /* 点数表示のコンテナ */
         .score {
-        width: 485px;
-        color: rgba(255,0,0,1);
-        position: absolute;
-        top: 136px;
-        left: 178px;
-        text-shadow: 8px 6px 6px rgba(0, 0, 0, 0.25);
-        font-family: Inter;
-        font-weight: Bold Italic;
-        font-size: 227px;
-        opacity: 1;
-        text-align: center;
+            width: 485px;
+            color: rgba(255,0,0,1);
+            position: absolute;
+            top: 136px;
+            left: 178px;
+            text-shadow: 8px 6px 6px rgba(0, 0, 0, 0.25);
+            font-family: Inter;
+            font-weight: Bold Italic;
+            font-size: 227px;
+            opacity: 1;
+            text-align: center;
         } 
 
         /* 点UPのコンテナ */
         .point.point-up {
-        position: absolute;
-        top: 328px;
-        left: 610px;  /* 元の.pointと同じ位置 */
-        display: flex;
-        align-items: baseline;
-        white-space: nowrap;
-        font-family: Inter;
-        font-weight: Bold Italic;
+            position: absolute;
+            top: 328px;
+            left: 610px;  /* 元の.pointと同じ位置 */
+            display: flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-family: Inter;
+            font-weight: Bold Italic;
         }
 
         /* 点の文字 */
@@ -125,7 +149,6 @@ def generate_pdf(data: Dict[str, Any]) -> bytes:
             font-weight: Bold Italic;
             margin-left: 5px;
         }
-
         """
         # CSSを追加
         css_content += additional_css
@@ -137,55 +160,21 @@ def generate_pdf(data: Dict[str, Any]) -> bytes:
 
     # HTMLコンテンツを更新
     subject = data["subject"]
-    html_content = html_content.replace(
-        "[sc_year]{.sc_year}",
-        str(data["sc_year"]),  # f'[{data["sc_year"]}]{{.sc_year}}'
-    )
-    html_content = html_content.replace(
-        "[last_name]{.last_name}",
-        str(data["last_name"]),  # f'[{data["last_name"]}]{{.last_name}}'
-    )
-    html_content = html_content.replace(
-        "[first_name]{.first_name}",
-        str(data["first_name"]),  # f'[{data["first_name"]}]{{.first_name}}'
-    )
-    html_content = html_content.replace(
-        "[subject]{.subject}",
-        str(data["subject"]),  # f'[{data["subject"]}]{{.subject}}'
-    )
-    html_content = html_content.replace(
-        "[test_name]{.test_name}",
-        str(data["test_name"]),  # f'[{data["test_name"]}]{{.test_name}}'
-    )
-    html_content = html_content.replace(
-        "[score]{.score}",
-        str(data["score"]),  # f'[{data["score"]}]{{.score}}'
-    )
+    html_content = html_content.replace("[sc_year]{.sc_year}", str(data["sc_year"]))
+    html_content = html_content.replace("[last_name]{.last_name}", str(data["last_name"]))
+    html_content = html_content.replace("[first_name]{.first_name}", str(data["first_name"]))
+    html_content = html_content.replace("[subject]{.subject}", str(data["subject"]))
+    html_content = html_content.replace("[test_name]{.test_name}", str(data["test_name"]))
+    html_content = html_content.replace("[score]{.score}", str(data["score"]))
 
     # 教科に対応する画像の設定
-    # subject_images = VALID_SUBJECTS[subject]
     subject_images = SUBJECT_IMAGES.get(subject, SUBJECT_IMAGES["国語"])
 
     # 画像をBase64エンコード
     image_files = {
-        "medal": encode_image_to_base64(
-            get_template_path("images", subject_images["medal"])
-        ),
+        "medal": encode_image_to_base64(get_template_path("images", subject_images["medal"])),
         "crest": encode_image_to_base64(get_template_path("images", "crest.png")),
-        "ribbon": encode_image_to_base64(
-            get_template_path("images", subject_images["ribbon"])
-        ),
-        "twinkle": encode_image_to_base64(get_template_path("images", "twinkle.png")),
-    }
-
-    image_files = {
-        "medal": encode_image_to_base64(
-            get_template_path("images", subject_images["medal"])
-        ),
-        "crest": encode_image_to_base64(get_template_path("images", "crest.png")),
-        "ribbon": encode_image_to_base64(
-            get_template_path("images", subject_images["ribbon"])
-        ),
+        "ribbon": encode_image_to_base64(get_template_path("images", subject_images["ribbon"])),
         "twinkle": encode_image_to_base64(get_template_path("images", "twinkle.png")),
     }
 
@@ -356,28 +345,7 @@ def generate_pdf(data: Dict[str, Any]) -> bytes:
     </html>
     """
 
-    async def generate_pdf_async():
-        # Generate PDF
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(
-                browser = await p.chromium.launch(
-            headless=True,
-            args=['--no-sandbox', '--disable-setuid-sandbox']
-            )
-            page = await browser.new_page()
-            await page.set_viewport_size({"width": 842, "height": 595})
-            await page.set_content(html_with_css, wait_until="networkidle")
-            await page.wait_for_timeout(1000)
-            pdf_data = await page.pdf(
-                width="842px",
-                height="595px",
-                print_background=True,
-                margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
-            )
-            await browser.close()
-            return pdf_data
-
-    return asyncio.run(generate_pdf_async())
+    return asyncio.run(generate_pdf_async(html_with_css))
 
 
 if __name__ == "__main__":

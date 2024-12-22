@@ -8,6 +8,16 @@ import os
 from datetime import datetime
 from pdf_generator.generator import generate_pdf, SUBJECT_IMAGES
 from utils.file_processor import detect_encoding, validate_dataframe
+import subprocess
+
+# Playwrightのブラウザインストール
+if not os.path.exists("/home/appuser/.cache/ms-playwright"):
+    try:
+        subprocess.run(["playwright", "install", "chromium"], check=True)
+        os.makedirs("/home/appuser/.cache", exist_ok=True)
+        os.chmod("/home/appuser/.cache", 0o777)
+    except Exception as e:
+        print(f"Failed to install Playwright browser: {e}")
 
 # ページ設定
 st.set_page_config(page_title="成績表PDF生成アプリ", page_icon="📊", layout="wide")

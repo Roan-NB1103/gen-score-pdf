@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+}
+
+.content {
+  width: 842px;
+  height: 595px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.header_back {
+  width: 842px;
+  height: 80px;
+  background: rgba(0,29,85,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.margin_medal {
+  width: 150px;
+  height: 202px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 109px;
+  left: 36px;
+  overflow: hidden;
+}
+
+.medal {
+  width: 150px;
+  height: 202px;
+  background: url("../images/n_lang1.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.emblem {
+  width: 368px;
+  height: 337px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 109px;
+  left: 237px;
+  overflow: hidden;
+}
+
+.crest {
+  width: 368px;
+  height: 337px;
+  background: url("../images/crest.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.showin {
+  width: 216px;
+  color: rgba(229,219,193,1);
+  position: absolute;
+  top: 129px;
+  left: 72px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 59px;
+  opacity: 1;
+  text-align: center;
+  transform: rotate(-10deg);
+}
+
+.ribbon {
+  width: 670px;
+  height: 106px;
+  background: url("../images/n_lang2.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 446px;
+  left: 91px;
+  overflow: hidden;
+}
+
+.twinkle {
+  width: 110px;
+  height: 115px;
+  background: url("../images/twinkle.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 115px;
+  left: 641px;
+  overflow: hidden;
+}
+
+.subject {
+  width: 99px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 155px;
+  left: 62px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 38px;
+  opacity: 1;
+  text-align: center;
+}
+
+.sc_year {
+  width: 60px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 55px;
+  left: 44px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 36px;
+  opacity: 1;
+  text-align: center;
+}
+
+.last_name {
+  width: 124px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  left: 145px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 36px;
+  opacity: 1;
+  text-align: center;
+}
+
+.first_name {
+  width: 124px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  left: 335px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 36px;
+  opacity: 1;
+  text-align: center;
+}
+
+.honorific {
+  width: 60px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 61px;
+  left: 505px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 29px;
+  opacity: 1;
+  text-align: center;
+}
+
+.test_name {
+  width: 423px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 1px;
+  left: 209px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 53px;
+  opacity: 1;
+  text-align: center;
+}
+
+.score {
+  width: 485px;
+  color: rgba(255,0,0,1);
+  position: absolute;
+  top: 136px;
+  left: 178px;
+  text-shadow: 8px 6px 6px rgba(0, 0, 0, 0.25);
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 227px;
+  opacity: 1;
+  text-align: center;
+}
+
+.point {
+  width: 100px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 300px;
+  left: 610px;
+  font-family: Inter;
+  font-weight: Bold Italic;
+  font-size: 104px;
+  opacity: 1;
+  text-align: center;
+}

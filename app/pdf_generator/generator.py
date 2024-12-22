@@ -359,7 +359,11 @@ def generate_pdf(data: Dict[str, Any]) -> bytes:
     async def generate_pdf_async():
         # Generate PDF
         async with async_playwright() as p:
-            browser = await p.chromium.launch()
+            browser = await p.chromium.launch(
+                browser = await p.chromium.launch(
+            headless=True,
+            args=['--no-sandbox', '--disable-setuid-sandbox']
+            )
             page = await browser.new_page()
             await page.set_viewport_size({"width": 842, "height": 595})
             await page.set_content(html_with_css, wait_until="networkidle")

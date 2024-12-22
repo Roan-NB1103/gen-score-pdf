@@ -130,7 +130,7 @@ body {
   position: absolute;
   top: 155px;
   left: 62px;
-  font-family: Inter;
+  font-family: Inter, "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 38px;
   opacity: 1;
@@ -143,7 +143,7 @@ body {
   position: absolute;
   top: 55px;
   left: 44px;
-  font-family: Inter;
+  font-family: Inter, "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 36px;
   opacity: 1;
@@ -155,7 +155,7 @@ body {
   color: rgba(255,255,255,1);
   position: absolute;
   left: 145px;
-  font-family: Inter;
+  font-family: "Inter", "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 36px;
   opacity: 1;
@@ -167,7 +167,7 @@ body {
   color: rgba(255,255,255,1);
   position: absolute;
   left: 335px;
-  font-family: Inter;
+  font-family: "Inter", "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 36px;
   opacity: 1;
@@ -180,7 +180,7 @@ body {
   position: absolute;
   top: 61px;
   left: 505px;
-  font-family: Inter;
+  font-family: Inter, "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 29px;
   opacity: 1;
@@ -193,7 +193,7 @@ body {
   position: absolute;
   top: 1px;
   left: 209px;
-  font-family: Inter;
+  font-family: Inter, "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 53px;
   opacity: 1;
@@ -207,7 +207,7 @@ body {
   top: 136px;
   left: 178px;
   text-shadow: 8px 6px 6px rgba(0, 0, 0, 0.25);
-  font-family: Inter;
+  font-family: Inter, "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 227px;
   opacity: 1;
@@ -220,7 +220,7 @@ body {
   position: absolute;
   top: 300px;
   left: 610px;
-  font-family: Inter;
+  font-family: Inter, "IPAexGothic", "IPAexMincho", sans-serif;
   font-weight: Bold Italic;
   font-size: 104px;
   opacity: 1;

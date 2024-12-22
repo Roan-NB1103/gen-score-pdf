@@ -133,7 +133,18 @@ def create_bulk_pdf():
             # ファイルの読み込みとエンコーディング検出
             if uploaded_file.type == "text/csv":
                 encoding = detect_encoding(uploaded_file)
-                df = pd.read_csv(uploaded_file, encoding=encoding)
+                df = pd.read_csv(
+                    uploaded_file,
+                    encoding=encoding,
+                    dtype = {
+                        'subject': str,
+                        'test_name': str,
+                        'score': int,
+                        'sc_year': str,
+                        'last_name': str,
+                        'first_name': str
+                    }
+                )
             else:  # Excel
                 df = pd.read_excel(uploaded_file)
 
@@ -165,13 +176,13 @@ def create_bulk_pdf():
 
                             # PDF生成用のデータ作成
                             input_values = {
-                                "subject": row["subject"],
-                                "test_name": row["test_name"],
-                                "score": row["score"],
-                                "sc_year": row["sc_year"],
-                                "last_name": row["last_name"],
-                                "first_name": row["first_name"],
-                                "template_type": st.session_state.template_type,
+                                "subject": str(row["subject"]).strip(),
+                                "test_name": str(row["test_name"]).strip(),
+                                "score": int(row["score"]),
+                                "sc_year": str(row["sc_year"]).strip(),
+                                "last_name": str(row["last_name"]).strip(),
+                                "first_name": str(row["first_name"]).strip(),
+                                "template_type": st.session_state.template_type
                             }
 
                             # PDF生成

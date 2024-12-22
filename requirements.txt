@@ -3,6 +3,7 @@ streamlit==1.31.0
 
 # PDF Generation
 playwright==1.41.1
+pyee==11.0.1
 
 # Data Processing
 pandas==2.2.0
@@ -21,5 +22,3 @@ pytest-asyncio==0.23.5  # Async testing support
 
 # Cloud Run Dependencies
 gunicorn==21.2.0  # WSGI HTTP Server
-
---post-install playwright install chromium

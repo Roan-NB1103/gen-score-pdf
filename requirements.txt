@@ -6,7 +6,7 @@ openpyxl==3.1.2
 chardet==5.2.0
 numpy==1.26.3
 typing-extensions==4.9.0
-black==24.1.1
+black==24.3.0
 flake8==7.0.0
 pytest==8.0.0
 pytest-asyncio==0.23.5
